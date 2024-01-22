@@ -6,7 +6,7 @@ use App\Application\Responses\RespondWithJsonErrorTrait;
 use App\Application\Responses\RespondWithJsonTrait;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
-class Command
+class Feature
 {
     use DispatchesJobs, RespondWithJsonErrorTrait, RespondWithJsonTrait;
 }
