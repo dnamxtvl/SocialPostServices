@@ -169,6 +169,11 @@ return [
         App\Application\Providers\EventServiceProvider::class,
         App\Application\Providers\RouteServiceProvider::class,
         App\Application\Providers\HorizonServiceProvider::class,
+
+        /*
+         * Domain Service Providers...
+         */
+        App\Domain\Post\Providers\PostServiceProvider::class,
     ])->toArray(),
 
     /*
