@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql_post'),
+    'default' => env('DB_CONNECTION', 'mysql_user'),
 
     /*
     |--------------------------------------------------------------------------

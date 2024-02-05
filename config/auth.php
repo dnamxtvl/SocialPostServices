@@ -1,5 +1,7 @@
 <?php
 
+use App\Infrastructure\Models\User;
+
 return [
 
     /*
@@ -40,6 +42,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'api' => [
+            'driver' => 'passport',
+            'provider' => 'users',
+        ],
     ],
 
     /*
@@ -62,7 +69,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Infrastructure\Models\User::class,
+            'model' => User::class,
         ],
 
         // 'users' => [
@@ -111,5 +118,9 @@ return [
     */
 
     'password_timeout' => 10800,
-
+    'max_wrong_password' => 4,
+    'url' => env('USER_SERVICE_DOMAIN', 'http://127.0.0.1:8080'),
+    'path_call_api' => [
+        'check_login' => '/api/check-login',
+    ]
 ];

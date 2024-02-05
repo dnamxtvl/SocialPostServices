@@ -2,6 +2,8 @@
 
 namespace App\Domain\Post\Providers;
 
+use App\Domain\Post\RepositoryInterfaces\IndividualPostRepositoryInterface;
+use App\Infrastructure\Repositories\IndividualPostRepository;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\ServiceProvider;
 
@@ -12,7 +14,7 @@ class PostServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(IndividualPostRepositoryInterface::class, IndividualPostRepository::class);
     }
 
     /**
