@@ -27,7 +27,7 @@ class IsLogin
             ])->post(config('auth.url').config('auth.path_call_api.check_login'));
 
             if (! $checkLogin->successful()) {
-                Log::error($checkLogin->json()['message']);
+                Log::error(message: $checkLogin->object()->message);
                 throw new ForbiddenException(Response::HTTP_INTERNAL_SERVER_ERROR, 'Đã xảy ra lỗi!');
             }
 
@@ -38,8 +38,8 @@ class IsLogin
                 throw new AuthenticationException('Phiên đăng nhập đã hết hạn');
             }
 
-            $user = $checkLogin->json();
-            $authUser = User::query()->find(id: $user['id']);
+            $user = $checkLogin->object();
+            $authUser = User::query()->find(id: $user->id);
 
             if (is_null($authUser)) {
                 throw new NotFoundHttpException('Không tìm thấy người dùng');
