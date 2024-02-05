@@ -28,21 +28,24 @@ class IsLogin
 
             if (! $checkLogin->successful()) {
                 Log::error(message: $checkLogin->object()->message);
-                throw new ForbiddenException(Response::HTTP_INTERNAL_SERVER_ERROR, 'Đã xảy ra lỗi!');
+                throw new ForbiddenException(
+                    statusCode: Response::HTTP_INTERNAL_SERVER_ERROR,
+                    message: 'Đã xảy ra lỗi!'
+                );
             }
 
             if ($checkLogin->unauthorized()) {
                 if (Auth::check()) {
                     Auth::logout();
                 }
-                throw new AuthenticationException('Phiên đăng nhập đã hết hạn');
+                throw new AuthenticationException(message: 'Phiên đăng nhập đã hết hạn');
             }
 
             $user = $checkLogin->object();
             $authUser = User::query()->find(id: $user->id);
 
             if (is_null($authUser)) {
-                throw new NotFoundHttpException('Không tìm thấy người dùng');
+                throw new NotFoundHttpException(message: 'Không tìm thấy người dùng');
             }
 
             /** @var User $authUser */
