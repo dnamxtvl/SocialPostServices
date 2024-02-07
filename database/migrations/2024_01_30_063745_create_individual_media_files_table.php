@@ -18,6 +18,7 @@ return new class extends Migration
             $table->tinyInteger('type')->index();
             $table->boolean('is_album')->default(config('individual_media_files.is_album'))->index();
             $table->uuid('individual_album_id')->nullable()->index('text');
+            $table->uuid('individual_post_id')->index('text')->nullable();
             $table->index(['type' => 1, 'is_album' => 1], 'type_is_album_index', 'type_is_album_index');
             $table->index(['is_album' => 1, 'individual_album_id' => 'text'], 'is_album_individual_album_id_index');
             $table->timestamps();
