@@ -18,6 +18,8 @@ class InsertFakePostCommand extends Command
     const numberMediaFileOfPost = 5;
     const numberCommentOfPost = 5;
     const numberEmojiOfPost = 10;
+    const firstEmojiId = 1;
+    const lastEmojiId = 7;
     /**
      * The name and signature of the console command.
      *
@@ -157,7 +159,7 @@ class InsertFakePostCommand extends Command
         return [
             'id' => (new IndividualPostEmoji())->newUniqueId(),
             'individual_post_id' => $postId,
-            'emoji_id' => fake()->numberBetween(1, 7),
+            'emoji_id' => fake()->numberBetween(self::firstEmojiId, self::lastEmojiId),
             'user_id' => $userId,
             'created_at' => $timeFaker,
             'updated_at' => $timeFaker,
